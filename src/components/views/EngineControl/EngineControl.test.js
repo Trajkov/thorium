@@ -7,13 +7,19 @@ import Component, {
   SPEEDCHANGE_SUB,
   HEATCHANGE_SUB,
 } from "./index.js";
-
-it("should render", async () => {
+describe("Test EngineControl", () => {
   const {container, getByText} = render(<Component {...baseProps} />, {
     queries: [ENGINE_QUERY, SPEEDCHANGE_SUB, HEATCHANGE_SUB],
   });
-  await waitForElementToBeRemoved(() => getByText("Loading..."));
-  await wait();
-  expect(container.innerHTML).toBeTruthy();
-  expect(container.innerHTML).not.toBe("Error");
+  describe("GUI Dependant Tests:", () => {
+    it("should render", async () => {
+      await waitForElementToBeRemoved(() => getByText("Loading..."));
+      await wait();
+      expect(container.innerHTML).toBeTruthy();
+      expect(container.innerHTML).not.toBe("Error");
+    });
+    it("should navigate to speed and push the buttons", async () => {
+      expect(true).toBe(true);
+    });
+  });
 });

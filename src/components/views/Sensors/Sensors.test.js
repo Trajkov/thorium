@@ -5,12 +5,21 @@ import baseProps from "../../../stories/helpers/baseProps.js";
 import Component from "./index.js";
 import SensorsMock from "mocks/cards/Sensors.mock.js";
 
-it("should render", async () => {
+describe("Test Sensors", () => {
   const {container, getByText} = render(<Component {...baseProps} />, {
     mocks: SensorsMock,
   });
-  await waitForElementToBeRemoved(() => getByText("Loading..."));
-  await wait();
-  expect(container.innerHTML).toBeTruthy();
-  expect(container.innerHTML).not.toBe("Error");
+  describe("GUI Dependant Tests", async () => {
+    beforeAll(async () => {
+      await waitForElementToBeRemoved(() => getByText("Loading..."));
+      await wait();
+    });
+    it("should render", async () => {
+      expect(container.innerHTML).toBeTruthy();
+      expect(container.innerHTML).not.toBe("Error");
+    });
+  });
+  it("should render buttons and click them", () => {
+    expect(true).toBeTruthy();
+  });
 });
